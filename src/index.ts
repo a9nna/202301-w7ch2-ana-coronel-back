@@ -1,11 +1,14 @@
 import express from "express";
+import createDebug from "debug";
+import startServer from "./server/startServer.js";
 
-const app = express();
+const debug = createDebug("robots:root");
 
-const port = 4000;
+const port = process.env.PORT ?? 4000;
 
-app.get("/robots", (req, res) => {
-  res.status(200).json({ pong: true });
-});
-
-app.listen(port);
+try {
+  await startServer(+port);
+  debug(`Server listening on port ${port}`);
+} catch (error) {
+  debug(error.message);
+}
