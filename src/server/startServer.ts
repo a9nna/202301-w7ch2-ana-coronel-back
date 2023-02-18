@@ -1,5 +1,6 @@
 import createDebug from "debug";
 import { app } from "./index.js";
+import { type CustomError } from "../CustomError/CustomError.js";
 
 const debug = createDebug("robots:server:startServer");
 
@@ -9,10 +10,14 @@ const startServer = async (port: number) =>
       resolve(server);
     });
 
-    server.on("error", (error: Error) => {
-      debug("error");
+    server.on("error", (error: CustomError) => {
+      const errorMessage = "Error on starting the server";
 
-      reject(new Error("There has been an error"));
+      if (error.code === "EADDRINUSE") {
+        debug(errorMessage, `The port number ${port} is already in use`);
+      }
+
+      reject(new Error(errorMessage));
     });
   });
 

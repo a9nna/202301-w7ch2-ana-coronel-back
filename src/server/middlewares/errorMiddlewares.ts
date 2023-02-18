@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { debug } from "../../index.js";
-import { CustomError } from "../../CustomError/CustomError";
+import { CustomError } from "../../CustomError/CustomError.js";
 import chalk from "chalk";
 
 export const notFoundError = (
