@@ -1,7 +1,8 @@
 import { type NextFunction, type Request, type Response } from "express";
-import { debug } from "../../index.js";
+import createDebug from "debug";
 import { CustomError } from "../../CustomError/CustomError.js";
-import chalk from "chalk";
+
+export const debug = createDebug("robots:server");
 
 export const notFoundError = (
   req: Request,
@@ -16,10 +17,9 @@ export const notFoundError = (
 export const generalError = (
   error: CustomError,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
-  debug(chalk.red(error.message));
+  debug(error.message);
 
   res
     .status(error.statusCode || 500)

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { type Response, type Request, type NextFunction } from "express";
-import { describe } from "node:test";
 import { getRobots } from "./robotsControllers.js";
 
 describe("Given a getRobots controller", () => {
