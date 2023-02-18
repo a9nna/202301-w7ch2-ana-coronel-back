@@ -1,5 +1,5 @@
 import createDebug from "debug";
-import { app } from ".";
+import { app } from "./index.js";
 
 const debug = createDebug("robots:server:startServer");
 
