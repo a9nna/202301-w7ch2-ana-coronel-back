@@ -23,15 +23,15 @@ export const getRobots = async (
   }
 };
 
-export const getRobotById = (
+export const getRobotById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
+  const idRobot = req.params;
 
   try {
-    const robot = Robot.findById(id);
+    const robot = await Robot.findById(idRobot);
     res.status(200).json({ robot });
   } catch (error) {
     const customError = new CustomError(
