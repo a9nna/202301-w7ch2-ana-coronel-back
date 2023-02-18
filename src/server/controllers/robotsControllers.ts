@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../CustomError/CustomError.js";
+import { Robot } from "../../database/models/Robot.js";
 
 export const getRobots = async (
   req: Request,
@@ -8,7 +9,9 @@ export const getRobots = async (
   next: NextFunction
 ) => {
   try {
-    res.status(200).json({ pong: true });
+    const robots = await Robot.find();
+
+    res.status(200).json({ robots });
   } catch (error) {
     const customError = new CustomError(
       error.message,

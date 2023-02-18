@@ -9,11 +9,11 @@ const port = process.env.PORT ?? 4000;
 const mongoDdUrl = process.env.MONGODB_CONNECTION_URL;
 
 try {
-  await startServer(+port);
-  debug(`Server listening on port ${port}`);
-
   await connectDataBase(mongoDdUrl!);
   debug("Connected to data base");
+
+  await startServer(+port);
+  debug(`Server listening on port ${port}`);
 } catch (error) {
   debug(error.message);
 }
