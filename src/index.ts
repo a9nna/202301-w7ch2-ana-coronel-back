@@ -1,4 +1,3 @@
-import express from "express";
 import createDebug from "debug";
 import startServer from "./server/startServer.js";
 
