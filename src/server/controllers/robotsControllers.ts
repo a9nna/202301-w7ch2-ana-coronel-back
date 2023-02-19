@@ -16,7 +16,28 @@ export const getRobots = async (
     const customError = new CustomError(
       error.message,
       500,
-      "Couldn't retrieve robots"
+      "Couldn't retrieve robots."
+    );
+
+    next(customError);
+  }
+};
+
+export const getRobotById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const idRobot = req.params;
+
+  try {
+    const robot = await Robot.findById(idRobot);
+    res.status(200).json({ robot });
+  } catch (error) {
+    const customError = new CustomError(
+      error.message,
+      500,
+      "Couldn't retrieve robot."
     );
 
     next(customError);
