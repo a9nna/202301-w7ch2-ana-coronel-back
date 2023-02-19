@@ -28,10 +28,11 @@ export const getRobotById = async (
   res: Response,
   next: NextFunction
 ) => {
-  const idRobot = req.params;
+  const { idRobot } = req.params;
 
   try {
     const robot = await Robot.findById(idRobot);
+
     res.status(200).json({ robot });
   } catch (error) {
     const customError = new CustomError(
@@ -42,4 +43,16 @@ export const getRobotById = async (
 
     next(customError);
   }
+};
+
+export const deleteRobotById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const idRobot = req.params;
+
+  try {
+    const robot = await Robot.deleteOne({ id: idRobot });
+  } catch (error) {}
 };
