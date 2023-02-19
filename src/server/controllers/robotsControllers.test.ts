@@ -15,7 +15,7 @@ const mockTerminatorRobot: RobotStructure = {
   stats: {
     speed: 1,
     endurance: 1,
-    creationDate: "",
+    creationDate: new Date(),
   },
 };
 
@@ -28,7 +28,7 @@ const mockRobotsList: RobotsStructure = [
     stats: {
       speed: 1,
       endurance: 1,
-      creationDate: "",
+      creationDate: new Date(),
     },
   },
 ];
