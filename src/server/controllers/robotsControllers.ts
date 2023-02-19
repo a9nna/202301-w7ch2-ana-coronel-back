@@ -1,6 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../CustomError/CustomError.js";
 import { Robot } from "../../database/models/Robot.js";
+import { type RobotStructure } from "../../types.js";
 
 export const getRobots = async (
   req: Request,
@@ -60,6 +61,32 @@ export const deleteRobotById = async (
       error.message,
       500,
       "Couldn't find and delete the robot"
+    );
+
+    next(customError);
+  }
+};
+
+export const createRobot = async (
+  req: Request<
+    Record<string, unknown>,
+    Record<string, unknown>,
+    RobotStructure
+  >,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const newRobot = req.body;
+
+    await Robot.create(newRobot);
+
+    res.status(201).json({ newRobot });
+  } catch (error) {
+    const customError = new CustomError(
+      error.message,
+      500,
+      "Couldn't create the robot"
     );
 
     next(customError);

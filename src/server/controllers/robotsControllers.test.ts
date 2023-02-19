@@ -1,7 +1,8 @@
-import { type Response, type Request, type NextFunction } from "express";
+import { type Response, type Request } from "express";
 import { Robot } from "../../database/models/Robot.js";
 import { type RobotStructure, type RobotsStructure } from "../../types.js";
 import {
+  createRobot,
   deleteRobotById,
   getRobotById,
   getRobots,
@@ -146,6 +147,43 @@ describe("Given a deleteRobotById controller", () => {
       expect(res.json).toHaveBeenCalledWith({
         idRobot: `${mockTerminatorRobot.id}`,
       });
+    });
+  });
+});
+
+describe("Given a createRobot controller", () => {
+  describe("When it receives a response", () => {
+    test("Then it should call its status method 201", async () => {
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockResolvedValue(mockTerminatorRobot),
+      } as Partial<Response>;
+
+      const req = {} as Request;
+      const next = jest.fn();
+      const expectedStatus = 201;
+
+      Robot.create = jest.fn().mockReturnValue(mockTerminatorRobot);
+
+      await createRobot(req, res as Response, next);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
+
+    test("Then it should call its json method", async () => {
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockResolvedValue(mockTerminatorRobot),
+      } as Partial<Response>;
+
+      const req = {} as Request;
+      const next = jest.fn();
+
+      Robot.create = jest.fn().mockReturnValue(mockTerminatorRobot);
+
+      await createRobot(req, res as Response, next);
+
+      expect(res.json).toHaveBeenCalledWith({});
     });
   });
 });
