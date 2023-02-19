@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 export const robotSchema = new Schema({
   name: String,
-  image: String,
+  url: String,
   stats: {
     speed: Number,
     endurance: Number,
