@@ -46,7 +46,9 @@ describe("Given a getRobots controller", () => {
       const next = jest.fn();
       const expectedStatusCode = 200;
 
-      Robot.find = jest.fn().mockReturnValue(mockRobotsList);
+      Robot.find = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockRobotsList),
+      }));
 
       await getRobots(req, res as Response, next);
 
@@ -60,7 +62,9 @@ describe("Given a getRobots controller", () => {
       } as Partial<Response>;
       const req = {} as Request;
       const next = jest.fn();
-      Robot.find = jest.fn().mockReturnValue(mockRobotsList);
+      Robot.find = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockRobotsList),
+      }));
 
       await getRobots(req, res as Response, next);
 
@@ -82,7 +86,9 @@ describe("Given a getRobotById controller", () => {
       const next = jest.fn();
       const expectedStatusCode = 200;
 
-      Robot.findById = jest.fn().mockReturnValue(mockRobotsList);
+      Robot.findById = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockRobotsList),
+      }));
 
       await getRobotById(req as Request, res as Response, next);
 
@@ -99,7 +105,9 @@ describe("Given a getRobotById controller", () => {
       };
       const next = jest.fn();
 
-      Robot.findById = jest.fn().mockReturnValue(mockTerminatorRobot);
+      Robot.findById = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockTerminatorRobot),
+      }));
 
       await getRobotById(req as Request, res as Response, next);
 
@@ -121,9 +129,9 @@ describe("Given a deleteRobotById controller", () => {
       const next = jest.fn();
       const expectedStatusCode = 200;
 
-      Robot.findByIdAndDelete = jest
-        .fn()
-        .mockReturnValue(mockTerminatorRobot.id);
+      Robot.findByIdAndDelete = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockTerminatorRobot.id),
+      }));
 
       await deleteRobotById(req as Request, res as Response, next);
 
@@ -140,7 +148,9 @@ describe("Given a deleteRobotById controller", () => {
       };
       const next = jest.fn();
 
-      Robot.findByIdAndDelete = jest.fn();
+      Robot.findByIdAndDelete = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockTerminatorRobot.id),
+      }));
 
       await deleteRobotById(req as Request, res as Response, next);
 
