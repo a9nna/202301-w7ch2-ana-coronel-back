@@ -6,7 +6,7 @@ export const robotSchema = new Schema({
   stats: {
     speed: Number,
     endurance: Number,
-    creationDate: String,
+    creationDate: Date,
   },
 });
 

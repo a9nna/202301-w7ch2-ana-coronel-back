@@ -5,7 +5,7 @@ export interface RobotStructure {
   stats: {
     speed: number;
     endurance: number;
-    creationDate: string;
+    creationDate: Date;
   };
 }
 
