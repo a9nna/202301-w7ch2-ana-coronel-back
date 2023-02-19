@@ -50,9 +50,19 @@ export const deleteRobotById = async (
   res: Response,
   next: NextFunction
 ) => {
-  const idRobot = req.params;
+  const { idRobot } = req.params;
 
   try {
-    const robot = await Robot.deleteOne({ id: idRobot });
-  } catch (error) {}
+    const robot = await Robot.findByIdAndDelete({ _id: idRobot });
+
+    res.status(200).json({ idRobot });
+  } catch (error) {
+    const customError = new CustomError(
+      error.message,
+      500,
+      "Couldn't find and delete the robot"
+    );
+
+    next(customError);
+  }
 };
