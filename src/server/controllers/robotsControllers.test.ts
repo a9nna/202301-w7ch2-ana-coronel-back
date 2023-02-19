@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { type Response, type Request } from "express";
 import { Robot } from "../../database/models/Robot.js";
 import { type RobotStructure, type RobotsStructure } from "../../types.js";
