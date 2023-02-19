@@ -53,7 +53,7 @@ export const deleteRobotById = async (
   const { idRobot } = req.params;
 
   try {
-    const robot = await Robot.findByIdAndDelete({ _id: idRobot });
+    await Robot.findByIdAndDelete({ _id: idRobot });
 
     res.status(200).json({ idRobot });
   } catch (error) {
