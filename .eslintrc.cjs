@@ -11,6 +11,8 @@ module.exports = {
           "error",
           "interface",
         ],
+
+        "@typescript-eslint/no-unsafe-argument": "off",
       },
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
