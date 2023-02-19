@@ -9,7 +9,7 @@ export const getRobots = async (
   next: NextFunction
 ) => {
   try {
-    const robots = await Robot.find();
+    const robots = await Robot.find().exec();
 
     res.status(200).json({ robots });
   } catch (error) {
@@ -31,7 +31,7 @@ export const getRobotById = async (
   const { idRobot } = req.params;
 
   try {
-    const robot = await Robot.findById(idRobot);
+    const robot = await Robot.findById(idRobot).exec();
 
     res.status(200).json({ robot });
   } catch (error) {
@@ -53,7 +53,7 @@ export const deleteRobotById = async (
   const { idRobot } = req.params;
 
   try {
-    await Robot.findByIdAndDelete({ _id: idRobot });
+    await Robot.findByIdAndDelete({ _id: idRobot }).exec();
 
     res.status(200).json({ idRobot });
   } catch (error) {
