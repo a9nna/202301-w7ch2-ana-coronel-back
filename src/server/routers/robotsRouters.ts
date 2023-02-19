@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authentication } from "../controllers/authentication.js";
 import {
   deleteRobotById,
   getRobotById,
@@ -9,4 +10,4 @@ export const robotsRouter = Router();
 
 robotsRouter.get("/", getRobots);
 robotsRouter.get("/:idRobot", getRobotById);
-robotsRouter.delete("/delete/:idRobot", deleteRobotById);
+robotsRouter.delete("/delete/:idRobot", authentication, deleteRobotById);

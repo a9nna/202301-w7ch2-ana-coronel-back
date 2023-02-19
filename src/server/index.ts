@@ -14,5 +14,5 @@ app.use(cors());
 
 app.use("/robots", robotsRouter);
 
-app.use(notFoundError);
-app.use(generalError);
+app.use("/", notFoundError);
+app.use("/", generalError);
