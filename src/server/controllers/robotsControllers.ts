@@ -28,16 +28,39 @@ export const getRobotById = async (
   res: Response,
   next: NextFunction
 ) => {
-  const idRobot = req.params;
+  const { idRobot } = req.params;
 
   try {
     const robot = await Robot.findById(idRobot);
+
     res.status(200).json({ robot });
   } catch (error) {
     const customError = new CustomError(
       error.message,
       500,
       "Couldn't retrieve robot."
+    );
+
+    next(customError);
+  }
+};
+
+export const deleteRobotById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { idRobot } = req.params;
+
+  try {
+    await Robot.findByIdAndDelete({ _id: idRobot });
+
+    res.status(200).json({ idRobot });
+  } catch (error) {
+    const customError = new CustomError(
+      error.message,
+      500,
+      "Couldn't find and delete the robot"
     );
 
     next(customError);
