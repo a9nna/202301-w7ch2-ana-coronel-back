@@ -14,9 +14,9 @@ const loginUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { userName, password } = req.body;
+  const { username, password } = req.body;
 
-  const user = await User.findOne({ userName, password });
+  const user = await User.findOne({ username, password });
 
   if (!user) {
     const customError = new CustomError(
