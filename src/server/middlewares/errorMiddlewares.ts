@@ -17,7 +17,8 @@ export const notFoundError = (
 export const generalError = (
   error: CustomError,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   debug(error.message);
 
