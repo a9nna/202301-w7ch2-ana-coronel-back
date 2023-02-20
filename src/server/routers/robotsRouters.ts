@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { authentication } from "../middlewares/authentication.js";
 import {
   createRobot,
   deleteRobotById,
   getRobotById,
   getRobots,
 } from "../controllers/robotsControllers.js";
+import auth from "../middlewares/auth.js";
 
 export const robotsRouter = Router();
 
 robotsRouter.get("/", getRobots);
 robotsRouter.get("/:idRobot", getRobotById);
-robotsRouter.delete("/delete/:idRobot", authentication, deleteRobotById);
-robotsRouter.post("/create/", createRobot);
+robotsRouter.delete("/delete/:idRobot", auth, deleteRobotById);
+robotsRouter.post("/create/", auth, createRobot);

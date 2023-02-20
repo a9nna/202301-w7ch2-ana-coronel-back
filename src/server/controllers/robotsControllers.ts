@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { CustomError } from "../../CustomError/CustomError.js";
 import { Robot } from "../../database/models/Robot.js";
-import { type RobotStructure } from "../../types.js";
+import { type CustomRequest, type RobotStructure } from "../../types";
 
 export const getRobots = async (
   req: Request,
@@ -46,14 +46,14 @@ export const getRobotById = async (
 };
 
 export const deleteRobotById = async (
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ) => {
   const { idRobot } = req.params;
 
   try {
-    await Robot.findByIdAndDelete({ _id: idRobot }).exec();
+    await Robot.findByIdAndDelete({ _id: idRobot, owner: req.ownerId }).exec();
 
     res.status(200).json({ idRobot });
   } catch (error) {
@@ -79,7 +79,7 @@ export const createRobot = async (
   try {
     const newRobot = req.body;
 
-    await Robot.create(newRobot);
+    await Robot.create({ newRobot });
 
     res.status(201).json({ newRobot });
   } catch (error) {

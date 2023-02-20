@@ -27,7 +27,7 @@ describe("Given a generalError middleware", () => {
         statusCode,
         "There has been an error"
       );
-      generalError(error, req, res as Response);
+      generalError(error, req, res as Response, next);
       expect(res.status).toHaveBeenCalledWith(statusCode);
     });
   });
