@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { type NextFunction, type Response } from "express";
-import { CustomError } from "../../CustomError/CustomError";
+import { CustomError } from "../../CustomError/CustomError.js";
 import { type CustomJwtPayload, type CustomRequest } from "../../types";
 
 const auth = async (req: CustomRequest, res: Response, next: NextFunction) => {
@@ -40,6 +40,8 @@ const auth = async (req: CustomRequest, res: Response, next: NextFunction) => {
   } catch (error) {
     next(error);
   }
+
+  next();
 };
 
 export default auth;

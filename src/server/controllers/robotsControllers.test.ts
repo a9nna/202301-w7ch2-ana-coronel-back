@@ -1,6 +1,10 @@
 import { type Response, type Request } from "express";
 import { Robot } from "../../database/models/Robot.js";
-import { type RobotStructure, type RobotsStructure } from "../../types.js";
+import {
+  type RobotStructure,
+  type RobotsStructure,
+  type CustomRequest,
+} from "../../types.js";
 import {
   createRobot,
   deleteRobotById,
@@ -123,7 +127,7 @@ describe("Given a deleteRobotById controller", () => {
         status: jest.fn().mockReturnThis(),
         json: jest.fn().mockResolvedValue(mockTerminatorRobot.id),
       } as Partial<Response>;
-      const req: Partial<Request> = {
+      const req: Partial<CustomRequest> = {
         params: { id: `${mockTerminatorRobot.id}` },
       };
       const next = jest.fn();
@@ -133,7 +137,7 @@ describe("Given a deleteRobotById controller", () => {
         exec: jest.fn().mockReturnValue(mockTerminatorRobot.id),
       }));
 
-      await deleteRobotById(req as Request, res as Response, next);
+      await deleteRobotById(req as CustomRequest, res as Response, next);
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
@@ -143,7 +147,7 @@ describe("Given a deleteRobotById controller", () => {
         status: jest.fn().mockReturnThis(),
         json: jest.fn().mockResolvedValue(mockTerminatorRobot.id),
       } as Partial<Response>;
-      const req: Partial<Request> = {
+      const req: Partial<CustomRequest> = {
         params: { idRobot: `${mockTerminatorRobot.id}` },
       };
       const next = jest.fn();
@@ -152,7 +156,7 @@ describe("Given a deleteRobotById controller", () => {
         exec: jest.fn().mockReturnValue(mockTerminatorRobot.id),
       }));
 
-      await deleteRobotById(req as Request, res as Response, next);
+      await deleteRobotById(req as CustomRequest, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith({
         idRobot: `${mockTerminatorRobot.id}`,
