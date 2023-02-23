@@ -1,6 +1,6 @@
 import request from "supertest";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { app } from "../index";
+import { app } from "..";
 import connectDataBase from "../../database/connectDataBase";
 import mongoose from "mongoose";
 
@@ -8,9 +8,8 @@ let mongodbServer: MongoMemoryServer;
 
 beforeAll(async () => {
   mongodbServer = await MongoMemoryServer.create();
-  const mongoServerUrl = mongodbServer.getUri();
 
-  await connectDataBase(mongoServerUrl);
+  await connectDataBase(mongodbServer.getUri());
 });
 
 afterAll(async () => {

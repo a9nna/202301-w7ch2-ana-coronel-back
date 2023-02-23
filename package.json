@@ -10,7 +10,8 @@
     "start": "node dist",
     "start:dev": "node --watch dist",
     "test": "npx jest",
-    "test:coverage": "npx jest --coverage --watchAll=false",
+    "test:dev": "npx jest --watchAll",
+    "test:coverage": "npx jest --coverage",
     "prepare": "husky install"
   },
   "keywords": [],
