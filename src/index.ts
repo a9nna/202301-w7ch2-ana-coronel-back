@@ -23,7 +23,7 @@ try {
   debug(chalk.green("Connected to data base"));
 
   await startServer(+port);
-  debug(chalk.green(`Server listening on port ${port}`));
+  debug(chalk.green(`Server listening on port http://localhost:${port}`));
 } catch (error) {
   debug(error.message);
 }
