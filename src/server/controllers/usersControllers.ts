@@ -26,7 +26,6 @@ const loginUser = async (
     );
 
     next(customError);
-
     return;
   }
 
