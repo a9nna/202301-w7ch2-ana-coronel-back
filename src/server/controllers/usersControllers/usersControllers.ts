@@ -18,7 +18,7 @@ export const loginUser = async (
 ) => {
   const { username, password } = req.body;
 
-  const user = await User.findOne({ username, password });
+  const user = await User.findOne({ username, password }).exec();
 
   if (!user) {
     const customError = new CustomError(
