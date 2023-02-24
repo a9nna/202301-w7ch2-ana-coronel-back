@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../index.js";
 import request from "supertest";
-import connectDataBase from "../../database/connectDataBase";
+import { app } from "../..";
+import connectDataBase from "../../../database/connectDataBase";
 
 let mongodbServer: MongoMemoryServer;
 

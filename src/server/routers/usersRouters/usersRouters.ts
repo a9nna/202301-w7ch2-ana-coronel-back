@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   createUser,
   loginUser,
-} from "../controllers/usersControllers/usersControllers.js";
+} from "../../controllers/usersControllers/usersControllers.js";
 import multer from "multer";
 import uniqid from "uniqid";
 

@@ -1,10 +1,10 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../index.js";
-import connectDataBase from "../../database/connectDataBase";
+import { app } from "../../index.js";
+import connectDataBase from "../../../database/connectDataBase";
 import request from "supertest";
-import User from "../../database/models/User";
 import jwt from "jsonwebtoken";
+import User from "../../../database/models/User.js";
 
 let server: MongoMemoryServer;
 
