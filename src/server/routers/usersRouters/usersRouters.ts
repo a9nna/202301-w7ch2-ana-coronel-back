@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     callBack(null, "uploads/");
   },
   filename(req, file, callBack) {
-    callBack(null, `${uniqid(`${file.fieldname}-`, `-${file.originalname}`)}`);
+    callBack(null, uniqid(`${file.fieldname}-`, `-${file.originalname}`));
   },
 });
 
